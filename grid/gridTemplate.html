@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      display: grid;
+      /*  声明了三列，宽度分别为 200px 100px 200px */
+      /* grid-template-columns: 200px 100px 200px; */
+      grid-template-columns: repeat(auto-fill, 200px);
+      grid-gap: 5px;
+      /*  声明了两行，行高分别为 50px 50px  */
+      /* grid-template-rows: 50px 50px; */
+      grid-template-rows: repeat(2, 50px);
+      text-align: center;
+      line-height: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+  </div>
+</body>
+<script type='text/javascript'>
+  const nodeList = document.querySelector('.wrapper')
+  const colorList = ['red', 'blue', 'yellow', 'pink', 'green', 'yellowGreen', 'gray']
+  Array.from(nodeList.children).forEach((item, index) => {
+    item.style.background = colorList[index]
+  })
+</script>
+
+</html>
