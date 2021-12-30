@@ -9,15 +9,13 @@
   <style>
     .wrapper {
       display: grid;
-      /*  声明了三列，宽度分别为 200px 100px 200px */
-      /* grid-template-columns: 200px 100px 200px; */
-      grid-template-columns: repeat(auto-fill, 200px);
-      grid-gap: 5px;
-      /*  声明了两行，行高分别为 50px 50px  */
-      /* grid-template-rows: 50px 50px; */
-      grid-template-rows: repeat(2, 50px);
       text-align: center;
       line-height: 50px;
+      /* grid-template-columns: 100px 1fr 2fr; */
+      /* auto实现 */
+      grid-template-columns: 100px auto 100px;
+      grid-gap: 10px;
+      grid-auto-rows: 50px;
     }
   </style>
 </head>
@@ -33,5 +31,6 @@
   </div>
 </body>
 <script type='text/javascript' src='./js/index.js'></script>
+
 
 </html>
