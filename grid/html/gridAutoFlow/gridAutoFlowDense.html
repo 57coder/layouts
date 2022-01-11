@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(4, 100px);
+      /* grid-auto-flow: column dense; */
+      font-size: 32px;
+      justify-items: center;
+      border: 1px solid;
+    }
+    .wrapper > div {
+      border: 1px solid;
+    }
+
+    .wrapper>div:nth-child(1),
+    .wrapper>div:nth-child(2) {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+  </div>
+  <script type='text/javascript' src='../../js/index.js'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 100px 100px;
+      grid-template-areas:
+        "a a b"
+        "a a b";
+    }
+
+
+    .item1 {
+      grid-area: a;
+      background-color: burlywood;
+    }
+
+    .item2 {
+      grid-area: b;
+      background-color: cornflowerblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="item1">Item</div>
+    <div class="item2">Item</div>
+  </div>
+</body>
+
+</html>
