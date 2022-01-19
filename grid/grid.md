@@ -105,33 +105,103 @@ Grid 布局即网格布局，比较擅长将一个页面划分为几个主要区
 
 4.  `grid-auto-flow` 属性，该属性控制着自动布局算法怎么运作，指定如何排列布局元素。默认放置的顺序是‘先行后列’，即先填满第一行，再开始放第二行。也可以将它设成`column`，变成‘先列后行’，代码及效果如下：
 
-  ```css
-  .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    grid-auto-flow: column;
-    grid-gap: 5px;
-    font-size: 32px;
-  }
-  ```
+```css
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  grid-auto-flow: column;
+  grid-gap: 5px;
+  font-size: 32px;
+}
+```
 
-  ![](http://r4psryvj9.hn-bkt.clouddn.com/autoFlow.png)
+![](http://r4psryvj9.hn-bkt.clouddn.com/autoFlow.png)
 
-  `grid-auto-flow`除了能设置`row`和`column`，还可以设成`row dense`和`column dense`，这两个值主要用于 某些项目指定位置后，剩下的项目怎么放置。
+`grid-auto-flow`除了能设置`row`和`column`，还可以设成`row dense`和`column dense`，这两个值主要用于 某些项目指定位置后，剩下的项目怎么放置。
 
-  这个例子让前两个盒子各占据两个单元格，在默认 `grid-auto-flow: row` 情况下，会产生下面的布局：
+这个例子让前两个盒子各占据两个单元格，在默认 `grid-auto-flow: row` 情况下，会产生下面的布局：
 
-  ![](http://r4psryvj9.hn-bkt.clouddn.com/example1.png)
+![](http://r4psryvj9.hn-bkt.clouddn.com/example1.png)
 
-  现在修改属性为 `row dense`，表示‘先行后列’，并尽可能紧密填满，尽量不出现空格。效果如下：
+现在修改属性为 `row dense`，表示‘先行后列’，并尽可能紧密填满，尽量不出现空格。效果如下：
 
-  ![](http://r4psryvj9.hn-bkt.clouddn.com/dense.png)
+![](http://r4psryvj9.hn-bkt.clouddn.com/dense.png)
 
-  如果将设置改为 `column dense`，表示‘先列后行’，并尽可能填满表格。效果如下：
+如果将设置改为 `column dense`，表示‘先列后行’，并尽可能填满表格。效果如下：
 
-  ![](http://zhoushengzhao.top/dense1.png)
+![](http://zhoushengzhao.top/dense1.png)
 
 5. `grid-auto-columns`属性和 `grid-auto-rows`：用来设置浏览器自动创建的多余网格的列宽和行高。写法和 `grid-template-columns` ，`grid-template-rows`相同。不指定该属性浏览器根据单元格大小自动计算新增网格的列宽和行高。TODO: 案例编写
 
+6. `grid-template-areas`：该属性可以让我们指定区域，例如：下面代码是指定了九个区域，分别对应九个单元格，我们可以设置 `grid-area`来指定每个区域的排列位置。
+
+```css
+.wrapper {
+  grid-template-areas:
+    "a b c"
+    "d e f"
+    "g h i";
+}
+.item-1 {
+  grid-area: e;
+}
+```
+
+![](http://zhoushengzhao.top/gridTemplateAreas.png)
+
 #### 项目属性
+
+1. `grid-column-start`属性和`grid-column-end`代表着 左右边框所在的垂直网格线， `grid-row-start`属性和 `grid-row-end` 代表着 上下边框所在的水平网格线。代码及效果如下：
+
+   ```css
+   .wrapper {
+     display: grid;
+     grid-template-columns: repeat(3, 100px);
+     grid-template-rows: repeat(3, 100px);
+     font-size: 32px;
+   }
+   .wrapper > div:nth-child(1) {
+     grid-row-start: 2;
+     grid-row-end: 4;
+     grid-column-start: 1;
+     grid-column-end: 3;
+   }
+   ```
+
+   ![](http://zhoushengzhao.top/gridStart.png)
+
+   这四个属性的值还可以使用`span`关键字，表示‘跨越’，即左右（上下）边框跨越多少个网格。代码及效果如下：
+
+   ```css
+   .wrapper > div:nth-child(1) {
+     grid-column-start: span 2;
+   }
+   ```
+
+   ![](http://zhoushengzhao.top/span.png)
+
+2. `grid-column`属性和 `grid-row`属性：`grid-column`是 `grid-column-start`和 `grid-column-end`的合并简写形式，`grid-row`是 `grid-row-start`和 `grid-row-end`的合并简写形式。语法可以参考下 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-column)，上面等同于：
+
+```css
+.wrapper > div:nth-child(1) {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
+}
+```
+
+3. `grid-area` 属性：指定项目放在哪一个区域，除了可以搭配 `grid-template-areas`外，还可以直接指定项目的摆放位置，是 `grid-row-start`、`grid-column-start`、`grid-row-end`、`grid-column-end`的合并简写形式。语法为 `grid-area: <row-start> / <column-start> / <row-end> / <column-end>`
+
+```css
+.wrapper {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+}
+
+.item-1 {
+  grid-area: 1 / 1 / 3 / 3;
+}
+```
+
+![](http://zhoushengzhao.top/gridArea.png)
